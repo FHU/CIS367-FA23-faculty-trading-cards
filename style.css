@@ -1,5 +1,6 @@
 :root {
-  --yellow: #FFD166
+  --yellow: #FFD166;
+  --accent-color: white;
 }
 
 * {
@@ -69,7 +70,7 @@ body{
 }
 
 .eng {
-  --accent-color: #073B4C;
+  --accent-color: #118AB2;
 }
 
 .cyb {
@@ -82,6 +83,7 @@ body{
 
 .card {
   position: relative;
+  
 
   /* align-items: center; */
   transition: all 1s ease-in-out;
@@ -247,6 +249,7 @@ body{
   border-radius: 5px;
   border-width: 1px;
   border-style: solid;
+  text-align: center;
   /* border-image: linear-gradient(to right, var(--yellow), #eee) 1; */
   
   /* border-top: 1px solid #aaa;

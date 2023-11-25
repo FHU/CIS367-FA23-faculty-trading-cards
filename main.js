@@ -11,6 +11,14 @@ const carousel = document.getElementsByClassName("carousel")[0];
 let people = [];
 var activeIndex;
 
+const classForFieldOfStudy = {
+  "Computer Science": "cs",
+  "Engineering": "eng",
+  "Mathematics": "math",
+  "Cybersecurity": "cyb"
+
+}
+
 window.addEventListener('load', async ()=>{
   initializeIndex();
   await addCards();
@@ -32,7 +40,7 @@ function generateCardHTML(person)
 {
   
   return `
-  <div class="card cs ">
+  <div class="card ${classForFieldOfStudy[person.FieldofStudy]}">
         <div class="header">
             <div class="">
                 <p class="title"> ${person.Rank}</p>
@@ -57,12 +65,12 @@ function generateCardHTML(person)
         <div class="attacks">
             <div class="attack">
                 <p class="description"> <span class="attack-name">${person.Attack1}</span> ${person.Attack1Description}</p>
-                <p class="damage">70</p>
+                <p class="damage">${person.Attack1Damage}</p>
             </div>
 
             <div class="attack">
                 <p class="description"> <span class="attack-name">${person.Attack2}</span> ${person.Attack2Description}</p>
-                <p class="damage">85</p>
+                <p class="damage">${person.Attack2Damage}</p>
             </div>
 
         </div>
@@ -71,24 +79,24 @@ function generateCardHTML(person)
 
                 <div class="weaknesses">
                     <h2>weaknesses</h2>
-                    <p>None</p>
+                    <p>${person.Weaknesses}</p>
                 </div>
 
                 <div class="resistances">
                     <h2>resistances</h2>
-                    <p>Student Tears</p>
+                    <p>${person.Resistances}</p>
                 </div>
 
                 <div class="cost">
                     <h2>cost</h2>
-                    <p> 5 <img src="lion.svg" alt=""></p>
+                    <p> ${person.Cost} <img src="lion.svg" alt=""></p>
                 </div>
 
         </div>
 
         <div class="bottom-description">
-            <p>Nickname: Mathmortician, Stamina: High</p>
-            <p class="">#dobetter</p>
+            <p>Nickname: ${person.NickName} &nbsp; Stamina: ${person.Stamina}</p>
+            <!--<p class="">#dobetter</p>-->
             
             <!-- <p>
                 Jared "Mathmortician" Collins, is an Infernal type known for the hashtag <b>#dobetter</b>. High Stamina LV. 47 
@@ -99,7 +107,7 @@ function generateCardHTML(person)
         <footer>  
             <div class="row">
                 <p >&copy; 2023</p>
-                <p>Creator Tucker Brown</p>
+                <p>${person.HashTag}</p>
                 <p><b>23/59 </b> α.0</p>
             </div>                     
         </footer>
