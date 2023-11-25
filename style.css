@@ -98,6 +98,8 @@ body{
   padding: 10px;
   justify-content: start;
   border: 10px solid var(--yellow);
+  /* outline: 1px solid #999; */
+  box-shadow: 0 0 10px rgba(55,55,55,0.1);
 
   background: linear-gradient(to bottom right, #eee, var(--accent-color), #ddd);
 }
@@ -206,7 +208,7 @@ body{
 }
 
 .row > div {
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   /* border:1px solid coral */
 }
@@ -236,7 +238,7 @@ body{
 }
 
 .row h2{
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .bottom-description {
