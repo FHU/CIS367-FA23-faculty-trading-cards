@@ -1,6 +1,11 @@
+:root {
+  --yellow: #FFD166
+}
+
 * {
-  margin:0;
-  padding: 0;
+  margin: 0;
+  padding:0;
+
   box-sizing: border-box;
 }
 
@@ -20,6 +25,8 @@ body{
   height: 100vh;
   width: 100%;
   padding: 2rem;
+  font-family: 'Gill Sans Condensed', 'Gill Sans', 'Gill Sans MT';
+  font-stretch: ultra-condensed;
 }
 
 .carousel {
@@ -42,17 +49,231 @@ body{
 }
 
 .card {
-  background-color: steelblue;
+  /*background-color: steelblue;
   width: 350px;
   height: 490px;
   aspect-ratio: 2.5/3.5;
   border: 2px solid goldenrod;
-  border-radius: 16px;
+  border-radius: 16px; */
+
+}
+
+
+.cs {
+  --accent-color: #F78C6B;
+
+}
+
+.math {
+  --accent-color: #EF476F;
+}
+
+.eng {
+  --accent-color: #073B4C;
+}
+
+.cyb {
+  --accent-color: #0CB0A9;
+}
+
+.center{
+  text-align: center;
+}
+
+.card {
+  position: relative;
+
+  /* align-items: center; */
+  transition: all 1s ease-in-out;
+  transform: translateX(0);
+
+  display: flex;
+  flex-direction: column;
+  margin:1rem;
+  width: 357px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 10px;
+  justify-content: start;
+  border: 10px solid var(--yellow);
+
+  background: linear-gradient(to bottom right, #eee, var(--accent-color), #ddd);
+}
+
+
+
+.card .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:-10px;
+}
+
+.card .header .title {
+  font-size: 10px;
+  background-color: var(--yellow);
+  padding: 2px;
+  padding-left:10px;
+  margin-left: -10px;
+  
+  border-bottom-right-radius: 10px;
+  /* text-align: center; */
+}
+
+.card .header .name{
+  padding: 5px;
+  padding-left:0;
+  font-size: 20px;
+  font-weight: 600;
+
+}
+
+.card .header .credentials {
+  font-size:10px;
+}
+
+.card .header .credentials span{
+  font-weight: 400;
+}
+
+.card .header .hp {
+  color: red;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: right;
+ 
+}
+
+
+.profile-image
+{
+  display: flex;
+  flex-direction: column;
+  gap:8px;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.profile-image img{
+  max-height: 170px;
+  border: 5px var(--accent-color) outset;
+  box-shadow: 3px 3px 15px #000;
+  object-fit: contain;
+}
+
+.profile-image .image-text {
+  font-size:12px;
+  background: linear-gradient( to right, var(--yellow), #eee);
+  text-align: center;
+  font-style: italic;
+  padding-inline: 8px;
+}
+
+.attacks {
+  padding-inline: 5px;
+
+}
+
+.attacks .attack {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding-block: 10px;
+  border-bottom: 1px solid #151515;
+  /* border-top: 1px solid #aaa; */
+  /* border-right: 1px solid #aaa; */
+}
+
+.attacks .attack span {
+  font-weight: 700;
+  font-size:14px
+}
+
+.attacks .attack .damage 
+{
+  font-size: 20px;
+  font-weight: 600;
+  padding: 4px;
+}
+
+
+.row{
+  display: flex;
+  padding: 5px;
+}
+
+.row > div {
+  font-size: 14px;
+  text-align: center;
+  /* border:1px solid coral */
+}
+
+.row .weaknesses, .row .resistances {
+  width: 40%;
+}
+
+.row .cost {
+  
+  width:20%
+}
+
+.cost p 
+{
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease-in-out;
-  transform: translateX(0);
+  gap:5px
+}
+.cost img {
+  padding: 2px;
+  width:24px;
+  height: 24px;
+  background-image: radial-gradient(circle, rgba(240,240,240,1) 15%, rgba(175,175,175,1) 100%);
+  border-radius: 12px;
+}
+
+.row h2{
+  font-size: 14px;
+}
+
+.bottom-description {
+  width:100%;
+  font-size:12px;
+  font-weight: 600;
+  margin:5px;
+  padding:5px;
+  border-color: var(--yellow);
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  /* border-image: linear-gradient(to right, var(--yellow), #eee) 1; */
+  
+  /* border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa; */
+}
+
+footer
+{
+  /* border:1px solid red; */
+  position: absolute;
+  bottom: 0px;
+  left:0;
+  width: 100%;
+
+  font-size:9px;
+}
+
+footer .row
+{
+  display: flex;
+  justify-content: space-between;
+  padding-inline:10px;
+}
+
+footer .center 
+{
+  justify-self: center;
 }
 
 .active 

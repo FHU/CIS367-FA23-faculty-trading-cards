@@ -1,42 +1,132 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
-
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
-const data = ["zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
+const API_URL = "https://fhu-faculty-api.netlify.app/faculty.v2.json";
+
+
+//const data = ["zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
 const carousel = document.getElementsByClassName("carousel")[0];
 // var activeIndex = Math.floor(data.length/2);
 
+let people = [];
 var activeIndex;
 
-initializeIndex();
-addCards();
-updateCards();
+window.addEventListener('load', async ()=>{
+  initializeIndex();
+  await addCards();
+  updateCards();
+});
 
 
 function initializeIndex() {
   const searchParams = new URLSearchParams(window.location.search);
   activeIndex = parseInt(searchParams.get('card'))
   
-  if (!activeIndex || activeIndex > data.length) {
+  if (!activeIndex || activeIndex > people.length) {
     activeIndex = 0;
     updateUrlParameter();
   }
 }
 
-function addCards() {
+function generateCardHTML(person)
+{
+  
+  return `
+  <div class="card cs ">
+        <div class="header">
+            <div class="">
+                <p class="title"> ${person.Rank}</p>
+                <p class="name">${person.FirstName} ${person.LastName} </p>
+            </div>
+            <div class=""> 
+                <p class="credentials">
+                    <span>${person.EducationLevel}</span>, ${person.FieldofStudy}
+                </p>
+                <p class="hp"> ${person.HitPoints} HP</p>
+            </div>
+        </div>
+
+        <div class="profile-image">
+            <img src="/headshots/${person.Image} " alt="${person.FirstName} ${person.LastName}">
+
+            <p class="image-text">
+                Damage Type: ${person.DamageType} • Height: ${person.Height} 
+            </p>
+        </div>
+
+        <div class="attacks">
+            <div class="attack">
+                <p class="description"> <span class="attack-name">${person.Attack1}</span> ${person.Attack1Description}</p>
+                <p class="damage">70</p>
+            </div>
+
+            <div class="attack">
+                <p class="description"> <span class="attack-name">${person.Attack2}</span> ${person.Attack2Description}</p>
+                <p class="damage">85</p>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+                <div class="weaknesses">
+                    <h2>weaknesses</h2>
+                    <p>None</p>
+                </div>
+
+                <div class="resistances">
+                    <h2>resistances</h2>
+                    <p>Student Tears</p>
+                </div>
+
+                <div class="cost">
+                    <h2>cost</h2>
+                    <p> 5 <img src="lion.svg" alt=""></p>
+                </div>
+
+        </div>
+
+        <div class="bottom-description">
+            <p>Nickname: Mathmortician, Stamina: High</p>
+            <p class="">#dobetter</p>
+            
+            <!-- <p>
+                Jared "Mathmortician" Collins, is an Infernal type known for the hashtag <b>#dobetter</b>. High Stamina LV. 47 
+            </p> -->
+
+        </div>
+
+        <footer>  
+            <div class="row">
+                <p >&copy; 2023</p>
+                <p>Creator Tucker Brown</p>
+                <p><b>23/59 </b> α.0</p>
+            </div>                     
+        </footer>
+        <a href="#" class="downloadbutton"> <i class="fa fa-download" aria-hidden="true"></i> </a>
+
+    </div>
     
-  data.forEach( (item, index) => {
+  `
+
+}
+
+async function addCards() {
+  
+  let response = await fetch(API_URL);
+  people = await response.json();  
+
+  people.forEach( (item, index) => {
       let div = document.createElement('div');
       div.classList.add("card-container");
   
-      div.innerHTML = `
-      <div class="card">
-        ${index} ${item} 
-        <a href="#" class="downloadbutton"> <i class="fa fa-download" aria-hidden="true"></i> </a>
-      </div>`;
+      div.innerHTML = generateCardHTML(item);
+
+      // div.innerHTML = `
+      // <div class="card">
+      //   ${index} ${item} 
+      //   <a href="#" class="downloadbutton"> <i class="fa fa-download" aria-hidden="true"></i> </a>
+      // </div>`;
 
       carousel.appendChild(div);
   });
@@ -67,7 +157,7 @@ function addCards() {
 }
 
 function updateCards() {
-  const length = data.length;
+  const length = people.length;
 
   const cards = document.querySelectorAll(".carousel .card");
   
@@ -114,7 +204,7 @@ document.getElementById("prevButton").addEventListener("click", (e)=>{
 document.getElementById("nextButton").addEventListener("click", (e)=>{
   e.preventDefault();
 
-  if( activeIndex < data.length)
+  if( activeIndex < people.length)
   {
       activeIndex++;
       updateCards();
