@@ -40,7 +40,7 @@ function generateCardHTML(person)
 {
   
   return `
-  <div class="card ${classForFieldOfStudy[person.FieldofStudy]}">
+  <div class="card ${classForFieldOfStudy[person.FieldofStudy.trim()]}">
         <div class="header">
             <div class="">
                 <p class="title"> ${person.Rank}</p>
