@@ -108,10 +108,10 @@ function generateCardHTML(person)
             <div class="row">
                 <p >&copy; 2023</p>
                 <p>${person.HashTag}</p>
-                <p><b>23/59 </b> α.0</p>
+                <p><b>${person.id}/${people.length} </b> α.0</p>
             </div>                     
         </footer>
-        <a href="#" class="downloadbutton"> <i class="fa fa-download" aria-hidden="true"></i> </a>
+        <!--<a href="#" class="downloadbutton"> <i class="fa fa-download" aria-hidden="true"></i> </a>-->
 
     </div>
     
