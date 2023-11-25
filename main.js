@@ -1,7 +1,7 @@
 import './style.css'
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 
-const API_URL = "https://fhu-faculty-api.netlify.app/faculty.v2.json";
+const API_URL = "https://fhu-faculty-api.netlify.app/mecs-faculty.v2.json";
 
 
 //const data = ["zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"];
