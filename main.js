@@ -9,7 +9,7 @@ const carousel = document.getElementsByClassName("carousel")[0];
 // var activeIndex = Math.floor(data.length/2);
 
 let people = [];
-var activeIndex;
+let activeIndex;
 
 const classForFieldOfStudy = {
   "Computer Science": "cs",
@@ -20,20 +20,29 @@ const classForFieldOfStudy = {
 }
 
 window.addEventListener('load', async ()=>{
-  initializeIndex();
   await addCards();
+  initializeIndex();
   updateCards();
 });
 
 
 function initializeIndex() {
   const searchParams = new URLSearchParams(window.location.search);
-  activeIndex = parseInt(searchParams.get('card'))
-  
-  if (!activeIndex || activeIndex > people.length) {
-    activeIndex = 0;
-    updateUrlParameter();
+  if ( searchParams.has('card') )
+  {
+    const parsedIndex = parseInt(searchParams.get('card'))
+
+    if(parsedIndex > 0 && parsedIndex < people.length)
+    {
+      activeIndex = parsedIndex
+      return;
+
+    }
   }
+  
+  activeIndex = 0
+  updateUrlParameter()
+
 }
 
 function generateCardHTML(person)
@@ -169,12 +178,14 @@ function updateCards() {
 
   const cards = document.querySelectorAll(".carousel .card");
   
+  console.log(activeIndex)
+
   cards.forEach( (div, index) => {
       if( index < activeIndex){
           // left
           div.classList.remove("active");
           div.style.zIndex = index;
-          const offset = 100+(length-index)*2;
+          const offset = 100+(length-index)*5;
           div.style.transform = `translateX(-${offset}%) scale(100%)`;
       }
       else if(index === activeIndex)
@@ -188,7 +199,7 @@ function updateCards() {
           //right 
           div.classList.remove("active");
           div.style.zIndex = (length - index);
-          const offset = 100+(index)*2;
+          const offset = 100+(index)*5;
           div.style.transform = `translateX(${offset}%) scale(100%)`;
       }
   });
